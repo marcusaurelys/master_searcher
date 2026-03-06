@@ -25,6 +25,7 @@ def rabin_karp_search(text: np.array, pattern: np.array):
     row_hashes = np.zeros((t_height, t_width - p_width + 1), dtype=int)
     y_pow = pow(Y_BASE, p_width, MOD)
 
+    #compute row rolling hash for text
     for i in range(t_height):
         curr_h = 0
         for j in range(t_width):
@@ -36,6 +37,7 @@ def rabin_karp_search(text: np.array, pattern: np.array):
 
     x_pow = pow(X_BASE, p_height, MOD)
     
+    #compute column rolling hash of row hash
     for j in range(t_width - p_width + 1):
         curr_v_h = 0
         for i in range(t_height):
