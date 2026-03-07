@@ -1,0 +1,43 @@
+algorithm,comparisons,match,wall_sec,text_size,pattern_size,case
+Naive,537,"(22, 22)",0.000959,25,3,contrived
+Rabin-Karp,538,"(22, 22)",0.002296,25,3,contrived
+Vectorized RK,538,"(22, 22)",0.001368,25,3,contrived
+Greedy KMP,1157,"(22, 22)",0.000709,25,3,contrived
+Greedy BM,195,"(22, 22)",0.000248,25,3,contrived
+Bird-KMP,2311,"(22, 22)",0.001859,25,3,contrived
+Bird-BM,2109,"(22, 22)",0.002148,25,3,contrived
+Naive,2312,"(47, 47)",0.010338,50,3,contrived
+Rabin-Karp,2313,"(47, 47)",0.01188,50,3,contrived
+Vectorized RK,2313,"(47, 47)",0.001988,50,3,contrived
+Greedy KMP,4807,"(47, 47)",0.003109,50,3,contrived
+Greedy BM,778,"(47, 47)",0.000903,50,3,contrived
+Bird-KMP,9611,"(47, 47)",0.009337,50,3,contrived
+Bird-BM,8751,"(47, 47)",0.010009,50,3,contrived
+Naive,9612,"(97, 97)",0.017969,100,3,contrived
+Rabin-Karp,9613,"(97, 97)",0.035402,100,3,contrived
+Vectorized RK,9613,"(97, 97)",0.005959,100,3,contrived
+Greedy KMP,19607,"(97, 97)",0.010309,100,3,contrived
+Greedy BM,3245,"(97, 97)",0.003173,100,3,contrived
+Bird-KMP,39211,"(97, 97)",0.030106,100,3,contrived
+Bird-BM,35884,"(97, 97)",0.025876,100,3,contrived
+Naive,39212,"(197, 197)",0.045438,200,3,contrived
+Rabin-Karp,39213,"(197, 197)",0.115891,200,3,contrived
+Vectorized RK,39213,"(197, 197)",0.024969,200,3,contrived
+Greedy KMP,79207,"(197, 197)",0.038486,200,3,contrived
+Greedy BM,13078,"(197, 197)",0.011737,200,3,contrived
+Bird-KMP,158411,"(197, 197)",0.114255,200,3,contrived
+Bird-BM,144951,"(197, 197)",0.111488,200,3,contrived
+Naive,248012,"(497, 497)",0.285422,500,3,contrived
+Rabin-Karp,248013,"(497, 497)",0.712569,500,3,contrived
+Vectorized RK,248013,"(497, 497)",0.162407,500,3,contrived
+Greedy KMP,498007,"(497, 497)",0.264674,500,3,contrived
+Greedy BM,82678,"(497, 497)",0.079454,500,3,contrived
+Bird-KMP,996011,"(497, 497)",0.713821,500,3,contrived
+Bird-BM,912351,"(497, 497)",0.732445,500,3,contrived
+Naive,996012,"(997, 997)",1.20489,1000,3,contrived
+Rabin-Karp,996013,"(997, 997)",2.869309,1000,3,contrived
+Vectorized RK,996013,"(997, 997)",0.625955,1000,3,contrived
+Greedy KMP,1996007,"(997, 997)",0.985038,1000,3,contrived
+Greedy BM,332345,"(997, 997)",0.306074,1000,3,contrived
+Bird-KMP,3992011,"(997, 997)",2.903387,1000,3,contrived
+Bird-BM,3658684,"(997, 997)",2.831243,1000,3,contrived
