@@ -1,4 +1,5 @@
 import numpy as np
+from numpy.lib.stride_tricks import sliding_window_view
 from algos.counter import Counter
 
 def rabin_karp_search(text: np.array, pattern: np.array):
@@ -59,5 +60,53 @@ def rabin_karp_search(text: np.array, pattern: np.array):
                     
                     if match:
                         return is_equal.count, (start_i, j)
+
+    return is_equal.count, None
+
+
+def vectorized_rabin_karp(text: np.array, pattern: np.array):
+    is_equal = Counter(lambda x, y: x == y)
+    t_height, t_width = text.shape
+    p_height, p_width = pattern.shape
+    
+    if p_height > t_height or p_width > t_width:
+        return 0, None
+
+    Y_BASE, X_BASE = 31, 37
+    MOD = 2**61 - 1
+
+    # 1. Precompute Pattern Hash
+    y_exponents = np.arange(p_width)[::-1]
+    y_powers = np.array([pow(int(Y_BASE), int(e), int(MOD)) for e in y_exponents])
+    
+    x_exponents = np.arange(p_height)[::-1]
+    x_powers = np.array([pow(int(X_BASE), int(e), int(MOD)) for e in x_exponents])
+    
+    row_hashes = np.sum((pattern * y_powers) % MOD, axis=1) % MOD
+    p_hash = np.sum((row_hashes * x_powers) % MOD) % MOD
+
+    # 2. Vectorized Text Hashing
+    windows = sliding_window_view(text, (p_height, p_width))
+
+    # Calculate hashes for ALL windows at once using NumPy matrix math
+    h_hashes = np.sum((windows * y_powers) % MOD, axis=-1) % MOD
+    
+    # Vertical hash: apply x_powers across the remaining pattern-height dimension
+    v_hashes = np.sum((h_hashes * x_powers) % MOD, axis=-1) % MOD
+
+    # 3. Find candidates
+    candidates = np.argwhere(v_hashes == p_hash)
+
+    for start_i, start_j in candidates:
+        match = True
+        for r in range(p_height):
+            for c in range(p_width):
+                if not is_equal(pattern[r, c], text[start_i + r, start_j + c]):
+                    match = False
+                    break
+            if not match: break
+        
+        if match:
+            return is_equal.count, (start_i, start_j)
 
     return is_equal.count, None
