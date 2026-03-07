@@ -47,7 +47,7 @@ def rabin_karp_search(text: np.array, pattern: np.array):
                 curr_v_h = (curr_v_h - row_hashes[i - p_height, j] * x_pow) % MOD
             
             if i >= p_height - 1:
-                if curr_v_h == p_hash:
+                if is_equal(curr_v_h, p_hash):
                     start_i = i - p_height + 1
                     match = True
                     # Verification loop using is_equal
@@ -95,7 +95,12 @@ def vectorized_rabin_karp(text: np.array, pattern: np.array):
     v_hashes = np.sum((h_hashes * x_powers) % MOD, axis=-1) % MOD
 
     # 3. Find candidates
-    candidates = np.argwhere(v_hashes == p_hash)
+    candidates = []
+    
+    for i in range(v_hashes.shape[0]):
+        for j in range(v_hashes.shape[1]):
+            if is_equal(v_hashes[i, j], p_hash):
+                candidates.append((i, j))
 
     for start_i, start_j in candidates:
         match = True
