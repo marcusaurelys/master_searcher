@@ -94,24 +94,21 @@ def vectorized_rabin_karp(text: np.array, pattern: np.array):
     # Vertical hash: apply x_powers across the remaining pattern-height dimension
     v_hashes = np.sum((h_hashes * x_powers) % MOD, axis=-1) % MOD
 
-    # 3. Find candidates
-    candidates = []
-    
-    for i in range(v_hashes.shape[0]):
-        for j in range(v_hashes.shape[1]):
+    v_h, v_w = v_hashes.shape
+    for i in range(v_h):
+        for j in range(v_w):
+            # Fair comparison: comparing the window's hash to the pattern's hash
             if is_equal(v_hashes[i, j], p_hash):
-                candidates.append((i, j))
-
-    for start_i, start_j in candidates:
-        match = True
-        for r in range(p_height):
-            for c in range(p_width):
-                if not is_equal(pattern[r, c], text[start_i + r, start_j + c]):
-                    match = False
-                    break
-            if not match: break
-        
-        if match:
-            return is_equal.count, (start_i, start_j)
+                # Greedy verification: check the actual characters immediately
+                match = True
+                for r in range(p_height):
+                    for c in range(p_width):
+                        if not is_equal(pattern[r, c], text[i + r, j + c]):
+                            match = False
+                            break
+                    if not match: break
+                
+                if match:
+                    return is_equal.count, (i, j)
 
     return is_equal.count, None
