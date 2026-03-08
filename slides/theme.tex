@@ -1,0 +1,71 @@
+% Theme and styling for Master Searcher beamer deck
+\usetheme{Madrid}
+\usecolortheme{default}
+\setbeamertemplate{navigation symbols}{}
+
+\definecolor{MSBlue}{HTML}{12355B}
+\definecolor{MSLightBlue}{HTML}{DDEAF7}
+\definecolor{MSAccent}{HTML}{D1495B}
+\definecolor{MSGreen}{HTML}{2A9D8F}
+\definecolor{MSGray}{HTML}{4E5D6C}
+
+\setbeamercolor{normal text}{fg=black,bg=white}
+\setbeamercolor{background canvas}{bg=white}
+\setbeamercolor{palette primary}{bg=MSBlue,fg=white}
+\setbeamercolor{palette secondary}{bg=MSGray,fg=white}
+\setbeamercolor{palette tertiary}{bg=MSBlue,fg=white}
+\setbeamercolor{frametitle}{fg=white,bg=MSBlue}
+\setbeamercolor{title in head/foot}{fg=white,bg=MSBlue}
+\setbeamercolor{author in head/foot}{fg=white,bg=MSGray}
+\setbeamercolor{section in head/foot}{fg=white,bg=MSGray}
+\setbeamercolor{subsection in head/foot}{fg=white,bg=MSGray}
+\setbeamercolor{title}{fg=MSBlue}
+\setbeamercolor{subtitle}{fg=MSGray}
+\setbeamercolor{author}{fg=MSGray}
+\setbeamercolor{institute}{fg=MSGray}
+\setbeamercolor{date}{fg=MSGray}
+\setbeamercolor{structure}{fg=MSBlue}
+\setbeamercolor{block title}{bg=MSLightBlue,fg=MSBlue}
+\setbeamercolor{block body}{bg=white,fg=black}
+\setbeamercolor{alerted text}{fg=MSAccent}
+\setbeamerfont{title}{size=\LARGE,series=\bfseries}
+\setbeamerfont{author}{size=\large}
+\setbeamerfont{institute}{size=\large}
+\setbeamerfont{date}{size=\Large}
+\setbeamerfont{frametitle}{series=\bfseries}
+
+\setbeamertemplate{title page}{%
+  \begin{centering}
+    \vspace*{1.0cm}
+    {\usebeamerfont{title}\color{MSBlue}\inserttitle\par}
+    \vspace{1.0cm}
+    {\usebeamerfont{author}\color{MSGray}\insertauthor\par}
+    \vspace{0.55cm}
+    {\usebeamerfont{institute}\color{MSGray}\insertinstitute\par}
+    \vspace{0.55cm}
+    {\usebeamerfont{date}\color{MSGray}\insertdate\par}
+  \end{centering}
+}
+
+\setbeamertemplate{frametitle}{%
+  \nointerlineskip%
+  \begin{beamercolorbox}[wd=\paperwidth,sep=0.45em,leftskip=1em,rightskip=1em]{frametitle}%
+    \usebeamerfont{frametitle}\strut\insertframetitle\strut%
+  \end{beamercolorbox}%
+}
+
+\setbeamertemplate{footline}{%
+  \leavevmode%
+  \hbox{%
+  \begin{beamercolorbox}[wd=.72\paperwidth,ht=2.6ex,dp=1.1ex,leftskip=1em]{palette secondary}%
+    \insertsectionhead
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.28\paperwidth,ht=2.6ex,dp=1.1ex,rightskip=1em plus1fil]{palette primary}%
+    \insertframenumber{} / \inserttotalframenumber
+  \end{beamercolorbox}}%
+  \vskip0pt%
+}
+
+\newcommand{\sourcenote}[1]{\vspace{0.35em}{\tiny\color{MSGray}Source: #1}}
+\newcommand{\caveat}[1]{\vspace{0.3em}{\scriptsize\color{MSAccent}Caveat: #1}}
+\newcommand{\keymsg}[1]{\begin{block}{Key Message}#1\end{block}}

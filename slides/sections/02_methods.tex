@@ -1,0 +1,157 @@
+\section{Methods and Algorithm Mechanics}
+
+\begin{frame}{Algorithm Family Overview}
+\small
+\begin{tabular}{>{\bfseries}p{0.22\linewidth}p{0.73\linewidth}}
+Naive & Full 2D sliding-window exact matching baseline. \\
+Rabin-Karp & 2D rolling hash over windows, then exact verification \cite{karp1987rabin}. \\
+Vectorized RK & Same RK logic with NumPy-wide window hashing. \\
+Greedy KMP & KMP filter on first row, then greedy full-row verification \cite{knuth1977fast}. \\
+Greedy BM & Bad-character BM filter on first row, then greedy verification \cite{boyer1977fast}. \\
+Bird-KMP & Column-encoding + Aho-Corasick-like column scan + KMP over IDs \cite{bird1977twod,aho1975efficient}. \\
+Bird-BM & Same Bird preprocessing, BM over column-ID sequence. \\
+\end{tabular}
+\end{frame}
+
+\begin{frame}{Instrumentation: What Is Measured}
+\begin{itemize}
+  \item Every algorithm returns \texttt{(comparison\_count, match\_position)}.
+  \item \texttt{Counter} wraps equality checks and increments on each call.
+  \item Wall-clock is captured externally per run in the notebook harness.
+\end{itemize}
+\begin{block}{Interpretation rule}
+\small
+\textbf{comparison\_count} approximates filtering behavior, while \textbf{wall-clock} captures full implementation cost.
+\end{block}
+\end{frame}
+
+\begin{frame}{Naive Search: Core Mechanics}
+\small
+\textbf{Input:} text \(T\in\{0,1\}^{N\times N}\), pattern \(P\in\{0,1\}^{M\times M}\)
+\begin{enumerate}
+  \item Enumerate every valid top-left window \((i,j)\).
+  \item Compare all \(M^2\) pattern cells against \(T[i:i+M, j:j+M]\).
+  \item Stop at first full match, else return \texttt{None}.
+\end{enumerate}
+\begin{block}{Complexity intuition}
+Worst-case \(O((N-M+1)^2 M^2)\). Minimal overhead, high direct comparison volume.
+\end{block}
+\end{frame}
+
+\begin{frame}{Naive Search: Practical Behavior}
+\small
+\begin{itemize}
+  \item Strength: very transparent baseline and stable implementation.
+  \item Weakness: no pruning; cost grows quickly when no early match occurs.
+  \item In this project: often competitive wall-clock at moderate sizes due to low constant factors.
+\end{itemize}
+\keymsg{Naive is a crucial reference point: simple, predictable, and hard to beat when overhead dominates.}
+\end{frame}
+
+\begin{frame}{2D Rabin-Karp: Rolling Hash Pipeline}
+\small
+\begin{enumerate}
+  \item Compute pattern hash using row and column polynomial bases.
+  \item Build row-wise rolling hashes for text.
+  \item Build vertical rolling hashes over those row hashes.
+  \item On hash hit, perform exact cell verification.
+\end{enumerate}
+\begin{block}{Why it helps}
+Most windows are rejected cheaply by hash mismatch before full comparison.
+\end{block}
+\end{frame}
+
+\begin{frame}{2D Rabin-Karp: Caveats in This Implementation}
+\small
+\begin{itemize}
+  \item Hash arithmetic and rolling updates are substantial non-counted work.
+  \item Collision verification still requires exact checks on candidate hits.
+  \item Loop RK and Vectorized RK can show similar comparisons but very different runtime.
+\end{itemize}
+\caveat{Do not treat RK comparison counts as complete cost; include wall-clock for selection.}
+\end{frame}
+
+\begin{frame}{Vectorized RK: What Vectorization Changes}
+\small
+\begin{itemize}
+  \item Uses NumPy sliding windows and reduction operations to hash many windows together.
+  \item Reduces Python-loop overhead in hash computation stage.
+  \item Verification loop is still Python-level for candidate hits.
+\end{itemize}
+\begin{block}{Expected effect}
+Lower runtime than loop RK when vectorized operations amortize setup overhead.
+\end{block}
+\end{frame}
+
+\begin{frame}{Greedy KMP: Two-Stage Filter + Verify}
+\small
+\begin{enumerate}
+  \item Build LPS array from first pattern row.
+  \item Run KMP across each candidate top text row.
+  \item For first-row matches, greedily verify remaining rows directly.
+\end{enumerate}
+\begin{itemize}
+  \item Effective when first-row mismatches are frequent.
+  \item Can overwork when first row matches often but full pattern fails.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Greedy BM: Bad-Character Driven Skipping}
+\small
+\begin{enumerate}
+  \item Build bad-character table from first pattern row.
+  \item Match right-to-left on that row; shift aggressively on mismatch.
+  \item If first-row match, verify remaining rows greedily.
+\end{enumerate}
+\begin{block}{Observed effect in this codebase}
+Greedy BM frequently delivers strongest wall-clock performance on QR/contrived tests.
+\end{block}
+\end{frame}
+
+\begin{frame}{Bird Methods: 2D-to-1D Reduction Strategy}
+\small
+\begin{enumerate}
+  \item Encode pattern columns into IDs.
+  \item Build automaton over unique column signatures.
+  \item For each top-row offset, derive a column-ID sequence of text windows.
+  \item Run 1D matcher over IDs: KMP variant or BM variant.
+\end{enumerate}
+\begin{block}{Design goal}
+Reduce expensive full-grid matching to structured column-sequence matching.
+\end{block}
+\end{frame}
+
+\begin{frame}{Bird-KMP and Bird-BM: Practical Tradeoffs}
+\small
+\begin{itemize}
+  \item Usually excellent in comparison-count efficiency (especially Bird-BM).
+  \item Preprocessing and automaton traversal add heavy constant-time overhead.
+  \item In our profiling, \texttt{\_build\_C\_row} and \texttt{\_ac\_next} dominate runtime.
+\end{itemize}
+\keymsg{Bird variants can win on comparisons yet lose on wall-clock in pure Python implementations.}
+\end{frame}
+
+\begin{frame}{Why Comparison and Runtime Rankings Diverge}
+\small
+\begin{tabular}{>{\bfseries}p{0.27\linewidth}p{0.66\linewidth}}
+Counted work & Equality checks routed through \texttt{Counter}. \\
+Non-counted work & Hash updates, dict lookups, automaton transitions, NumPy reductions, memory traversal. \\
+Outcome & Algorithms with fewer counted comparisons can still be slower overall. \\
+\end{tabular}
+
+\vspace{0.5em}
+\caveat{This is expected and not a bug: the metrics answer different questions.}
+\end{frame}
+
+\begin{frame}{Experimental Sections and What They Stress}
+\small
+\begin{tabular}{>{\bfseries}p{0.22\linewidth}p{0.72\linewidth}}
+Random Growth & Scaling behavior under structured no-match conditions in notebook generation. \\
+QR Search & Realistic pattern detection over downsampled QR-derived matrices. \\
+Contrived & Near-worst-case scanning with guaranteed late match. \\
+Head-to-Head & Maximum-size stress test revealing constant-factor realities. \\
+\end{tabular}
+
+\vspace{0.5em}
+\keymsg{Each section reveals a different failure mode and selection criterion.}
+\end{frame}

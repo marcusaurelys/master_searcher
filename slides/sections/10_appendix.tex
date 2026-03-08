@@ -1,0 +1,87 @@
+\appendix
+\section{Appendix}
+
+\begin{frame}{Backup: Random Means (All Algorithms)}
+\scriptsize
+\centering
+\begin{tabular}{lrr}
+\toprule
+\textbf{Algorithm} & \textbf{Comparisons} & \textbf{Wall-clock (s)} \\
+\midrule
+Bird-BM & \RandomCompBirdBM{} & \RandomTimeBirdBM{} \\
+Bird-KMP & \RandomCompBirdKMP{} & \RandomTimeBirdKMP{} \\
+Greedy BM & \RandomCompGreedyBM{} & \RandomTimeGreedyBM{} \\
+Greedy KMP & \RandomCompGreedyKMP{} & \RandomTimeGreedyKMP{} \\
+Naive & \RandomCompNaive{} & \RandomTimeNaive{} \\
+Rabin-Karp & \RandomCompRabinKarp{} & \RandomTimeRabinKarp{} \\
+Vectorized RK & \RandomCompVectorizedRK{} & \RandomTimeVectorizedRK{} \\
+\bottomrule
+\end{tabular}
+\end{frame}
+
+\begin{frame}{Backup: QR Means (All Algorithms)}
+\scriptsize
+\centering
+\begin{tabular}{lrr}
+\toprule
+\textbf{Algorithm} & \textbf{Comparisons} & \textbf{Wall-clock (s)} \\
+\midrule
+Bird-BM & \QrCompBirdBM{} & \QrTimeBirdBM{} \\
+Bird-KMP & \QrCompBirdKMP{} & \QrTimeBirdKMP{} \\
+Greedy BM & \QrCompGreedyBM{} & \QrTimeGreedyBM{} \\
+Greedy KMP & \QrCompGreedyKMP{} & \QrTimeGreedyKMP{} \\
+Naive & \QrCompNaive{} & \QrTimeNaive{} \\
+Rabin-Karp & \QrCompRabinKarp{} & \QrTimeRabinKarp{} \\
+Vectorized RK & \QrCompVectorizedRK{} & \QrTimeVectorizedRK{} \\
+\bottomrule
+\end{tabular}
+\end{frame}
+
+\begin{frame}{Backup: Contrived Means (All Algorithms)}
+\scriptsize
+\centering
+\begin{tabular}{lrr}
+\toprule
+\textbf{Algorithm} & \textbf{Comparisons} & \textbf{Wall-clock (s)} \\
+\midrule
+Bird-BM & \ContrivedCompBirdBM{} & \ContrivedTimeBirdBM{} \\
+Bird-KMP & \ContrivedCompBirdKMP{} & \ContrivedTimeBirdKMP{} \\
+Greedy BM & \ContrivedCompGreedyBM{} & \ContrivedTimeGreedyBM{} \\
+Greedy KMP & \ContrivedCompGreedyKMP{} & \ContrivedTimeGreedyKMP{} \\
+Naive & \ContrivedCompNaive{} & \ContrivedTimeNaive{} \\
+Rabin-Karp & \ContrivedCompRabinKarp{} & \ContrivedTimeRabinKarp{} \\
+Vectorized RK & \ContrivedCompVectorizedRK{} & \ContrivedTimeVectorizedRK{} \\
+\bottomrule
+\end{tabular}
+\end{frame}
+
+\begin{frame}{Backup: Pipeline Pseudocode}
+\small
+\textbf{Experiment loop skeleton}
+\begin{enumerate}
+  \item Generate \texttt{text}, \texttt{pattern} for a scenario.
+  \item Run all algorithms and collect \texttt{(comparisons, match, wall\_sec)}.
+  \item Append row records with scenario metadata.
+  \item Persist section CSV, then aggregate means by algorithm.
+  \item Plot comparisons and wall-clock for cross-method interpretation.
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{Backup: Reproducibility and Build}
+\small
+\textbf{Regenerate metrics and compile slides}
+\begin{itemize}
+  \item \texttt{make metrics}
+  \item \texttt{make figures}
+  \item \texttt{make slides}
+\end{itemize}
+
+\vspace{0.5em}
+\textbf{Key project files}
+\begin{itemize}
+  \item \texttt{scripts/recompute\_metrics.py}
+  \item \texttt{scripts/prepare\_figures.py}
+  \item \texttt{slides/main.tex} and \texttt{slides/sections/*.tex}
+  \item \texttt{slides/generated/metrics\_summary.csv}
+\end{itemize}
+\end{frame}

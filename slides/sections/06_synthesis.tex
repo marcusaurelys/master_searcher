@@ -1,0 +1,45 @@
+\section{Cross-Section Synthesis}
+
+\begin{frame}{Cross-Section Comparison Snapshot}
+\centering
+\includegraphics[width=\linewidth,height=0.52\textheight,keepaspectratio]{summary_all_sections.png}
+
+\vspace{0.3em}
+\begin{block}{Unified picture}
+Bird-BM repeatedly minimizes comparisons, while Greedy BM repeatedly minimizes runtime in practical scenarios.
+\end{block}
+\sourcenote{\texttt{results\_summary.csv} visual plus recomputed metrics for numeric callouts}
+\end{frame}
+
+\begin{frame}{Metric Interpretation Matrix}
+\small
+\centering
+\begin{tabular}{p{0.24\linewidth}p{0.34\linewidth}p{0.34\linewidth}}
+\toprule
+\textbf{Metric} & \textbf{Strength} & \textbf{Limitation} \\
+\midrule
+Comparisons & Shows filtering efficiency and candidate-pruning behavior & Misses overhead from hashing/automata/memory traversal \\
+Wall-clock & Captures true end-to-end implementation cost & Hardware/environment dependent; less algorithmically interpretable \\
+\bottomrule
+\end{tabular}
+
+\vspace{0.6em}
+\keymsg{Use comparisons for \emph{algorithmic behavior}, wall-clock for \emph{deployment choice}.}
+\end{frame}
+
+\begin{frame}{Scenario-Based Algorithm Selection Guide}
+\small
+\centering
+\begin{tabular}{p{0.28\linewidth}p{0.30\linewidth}p{0.36\linewidth}}
+\toprule
+\textbf{Scenario} & \textbf{Preferred for Time} & \textbf{Preferred for Comparison Budget} \\
+\midrule
+Random-growth style runs & \RandomBestTimeAlgo{} & \RandomBestCompAlgo{} \\
+QR-like real workload & \QrBestTimeAlgo{} & \QrBestCompAlgo{} \\
+Contrived adversarial placement & \ContrivedBestTimeAlgo{} & \ContrivedBestCompAlgo{} \\
+\bottomrule
+\end{tabular}
+
+\vspace{0.6em}
+\caveat{No single algorithm optimizes both metrics in all sections.}
+\end{frame}

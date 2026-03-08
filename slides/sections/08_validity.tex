@@ -1,0 +1,25 @@
+\section{Validity and Risk Assessment}
+
+\begin{frame}{Threats to Validity}
+\small
+\begin{itemize}
+  \item \textbf{Counting fairness:} comparison counters do not capture all computational work equally.
+  \item \textbf{Data generation semantics:} ``Random" section uses donut-structured text generation.
+  \item \textbf{Artifact scope:} raw QR PNGs absent in this repository snapshot.
+  \item \textbf{Platform dependence:} wall-clock outcomes can shift with environment/hardware.
+\end{itemize}
+\keymsg{Conclusions are strong for this implementation stack and tested scenarios, not universal complexity laws.}
+\end{frame}
+
+\begin{frame}{Mitigations and Quality Controls}
+\small
+\begin{itemize}
+  \item Numeric callouts recomputed from raw CSV via reproducible script.
+  \item Slide macros auto-generated to avoid manual transcription errors.
+  \item Scenario-diverse design (random, QR, contrived, and max-input head-to-head).
+  \item Explicit caveats included on empirical slides.
+\end{itemize}
+\begin{block}{Recommended next validation step}
+Run the same harness on additional hardware and larger QR corpora once \texttt{qr/} assets are available.
+\end{block}
+\end{frame}

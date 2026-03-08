@@ -1,0 +1,46 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+
+\input{theme}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{siunitx}
+\usepackage{amsmath}
+\usepackage{hyperref}
+
+\graphicspath{{figures/}}
+\sisetup{group-separator={,},group-minimum-digits=4,detect-all}
+
+\IfFileExists{generated/metrics_callouts.tex}{\input{generated/metrics_callouts.tex}}{}
+
+\title[Project 2: 2D Search]{Project 2: 2D Search}
+\author{Joel Batac \and Joshua Gilo}
+\institute{Technical Panel Presentation}
+\date{\today}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}{Presentation Roadmap}
+  \tableofcontents
+\end{frame}
+
+\input{sections/01_intro}
+\input{sections/02_methods}
+\input{sections/03_random_results}
+\input{sections/04_qr_results}
+\input{sections/05_contrived_results}
+\input{sections/06_synthesis}
+\input{sections/07_head_to_head}
+\input{sections/08_validity}
+\input{sections/09_conclusion}
+\input{sections/10_appendix}
+
+\end{document}

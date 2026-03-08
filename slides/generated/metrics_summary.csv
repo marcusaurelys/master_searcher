@@ -1,0 +1,53 @@
+section,metric,algorithm,value,rank
+random,comparisons,Bird-BM,204743.707142857,1
+random,comparisons,Rabin-Karp,750996.428571429,2
+random,comparisons,Vectorized RK,750996.428571429,3
+random,comparisons,Naive,753130.957142857,4
+random,comparisons,Bird-KMP,754329.014285714,5
+random,comparisons,Greedy BM,1189064.685714286,6
+random,comparisons,Greedy KMP,1508161.414285714,7
+random,wall_sec,Bird-BM,0.237957179,1
+random,wall_sec,Bird-KMP,0.348045321,2
+random,wall_sec,Greedy KMP,0.508493586,3
+random,wall_sec,Greedy BM,0.521715229,4
+random,wall_sec,Naive,0.548849107,5
+random,wall_sec,Rabin-Karp,0.675891893,6
+random,wall_sec,Vectorized RK,0.828939607,7
+qr,comparisons,Bird-BM,263.633333333,1
+qr,comparisons,Greedy BM,710.016666667,2
+qr,comparisons,Rabin-Karp,1148.933333333,3
+qr,comparisons,Vectorized RK,1148.933333333,4
+qr,comparisons,Bird-KMP,1294.600000000,5
+qr,comparisons,Naive,2184.150000000,6
+qr,comparisons,Greedy KMP,3030.550000000,7
+qr,wall_sec,Greedy BM,0.000294583,1
+qr,wall_sec,Bird-BM,0.000425883,2
+qr,wall_sec,Vectorized RK,0.000623067,3
+qr,wall_sec,Bird-KMP,0.000646633,4
+qr,wall_sec,Greedy KMP,0.001002300,5
+qr,wall_sec,Naive,0.001113133,6
+qr,wall_sec,Rabin-Karp,0.001243667,7
+contrived,comparisons,Bird-BM,251666.714285714,1
+contrived,comparisons,Vectorized RK,754836.428571429,2
+contrived,comparisons,Rabin-Karp,755387.000000000,3
+contrived,comparisons,Bird-KMP,755930.571428571,4
+contrived,comparisons,Greedy KMP,1511864.142857143,5
+contrived,comparisons,Naive,3019314.714285714,6
+contrived,comparisons,Greedy BM,3019314.714285714,7
+contrived,wall_sec,Bird-BM,0.238080714,1
+contrived,wall_sec,Bird-KMP,0.337132000,2
+contrived,wall_sec,Vectorized RK,0.353938429,3
+contrived,wall_sec,Rabin-Karp,0.708536429,4
+contrived,wall_sec,Greedy KMP,0.751434000,5
+contrived,wall_sec,Greedy BM,1.304503714,6
+contrived,wall_sec,Naive,1.334626000,7
+head_to_head,wall_sec,Greedy BM,7.09,
+head_to_head,comparisons,Greedy BM,16756456.0,
+head_to_head,wall_sec,Bird-BM,36.0266,
+head_to_head,comparisons,Bird-BM,7682641.0,
+head_to_head,wall_sec,Bird-KMP,48.58,
+head_to_head,comparisons,Bird-KMP,99891864.0,
+head_to_head,wall_sec,Greedy KMP,90.1497,
+head_to_head,comparisons,Greedy KMP,249689122.0,
+head_to_head,wall_sec,Naive,110.0969,
+head_to_head,comparisons,Naive,199556580.0,

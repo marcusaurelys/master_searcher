@@ -1,0 +1,40 @@
+\section{Contrived Worst-Case Results}
+
+\begin{frame}{Contrived Case: Bird-BM and Greedy BM Are Nearly Tied in Comparisons}
+\centering
+\includegraphics[width=\linewidth,height=0.50\textheight,keepaspectratio]{contrived_comparisons_vs_textsize.png}
+
+\vspace{0.3em}
+\keymsg{Best mean comparisons: \ContrivedBestCompAlgo{} (\ContrivedBestCompValue{}), narrowly ahead of Greedy BM.}
+\sourcenote{\texttt{results\_contrived.csv} and \texttt{contrived\_comparisons\_vs\_textsize.png}}
+\end{frame}
+
+\begin{frame}{Runtime Under Adversarial Placement}
+\centering
+\includegraphics[width=\linewidth,height=0.50\textheight,keepaspectratio]{contrived_wallclock.png}
+
+\vspace{0.3em}
+\keymsg{Fastest mean runtime: \textbf{\ContrivedBestTimeAlgo{}} (\ContrivedBestTimeValue{} s).}
+\caveat{Bird-BM has low comparisons but does not translate that into runtime leadership.}
+\sourcenote{\texttt{results\_contrived.csv} and \texttt{contrived\_wallclock.png}}
+\end{frame}
+
+\begin{frame}{Contrived Section Summary}
+\small
+\centering
+\begin{tabular}{lrr}
+\toprule
+\textbf{Algorithm} & \textbf{Mean Comparisons} & \textbf{Mean Time (s)} \\
+\midrule
+Bird-BM & \ContrivedCompBirdBM{} & \ContrivedTimeBirdBM{} \\
+Greedy BM & \ContrivedCompGreedyBM{} & \ContrivedTimeGreedyBM{} \\
+Vectorized RK & \ContrivedCompVectorizedRK{} & \ContrivedTimeVectorizedRK{} \\
+Naive & \ContrivedCompNaive{} & \ContrivedTimeNaive{} \\
+\bottomrule
+\end{tabular}
+
+\vspace{0.5em}
+\begin{block}{Interpretation}
+For deterministic end-of-matrix hits, skip-heavy first-row methods provide the strongest practical speedups.
+\end{block}
+\end{frame}

@@ -1,0 +1,52 @@
+\section{Context and Objectives}
+
+\begin{frame}{Why 2D Binary Pattern Matching Matters}
+\begin{itemize}
+  \item Many practical tasks reduce to locating small binary templates inside large binary grids.
+  \item Example domains: QR-like finder structures, symbol detection, and matrix motif search.
+  \item This project compares seven algorithmic strategies under common workloads.
+  \item Goal: identify \alert{which method is best under which operating condition}.
+\end{itemize}
+\keymsg{This is a scenario-driven algorithm selection study, not a single-winner contest.}
+\end{frame}
+
+\begin{frame}{Research Questions and Hypotheses}
+\textbf{RQ1.} Which algorithm minimizes equality comparisons per scenario?\\
+\textbf{RQ2.} Which algorithm minimizes wall-clock time per scenario?\\
+\textbf{RQ3.} How do results change from average workloads to adversarial layouts?
+
+\vspace{0.5em}
+\begin{block}{Hypothesis (pre-study)}
+\begin{itemize}
+  \item Hash/skip-heavy methods should reduce comparisons.
+  \item Runtime leadership may diverge from comparison leadership due to implementation overhead.
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}{Canonical Workflow and Data Sources}
+\begin{itemize}
+  \item Canonical notebook: \texttt{testing\_notebook.ipynb}
+  \item Sections benchmarked: Random Growth, QR Search, Contrived Worst-Case, Max-input Head-to-Head.
+  \item Numeric truth source: raw CSV outputs recomputed by \texttt{scripts/recompute\_metrics.py}.
+  \item Slide callouts are generated from \texttt{slides/generated/metrics\_callouts.tex}.
+\end{itemize}
+\begin{block}{Canonical Inputs}
+\small
+\texttt{results\_random.csv}, \texttt{results\_qr.csv}, \texttt{results\_contrived.csv}, \texttt{results\_head\_to\_head.csv}
+\end{block}
+\end{frame}
+
+\begin{frame}{Study Scope at a Glance}
+\small
+\begin{tabular}{>{\bfseries}p{0.26\linewidth}p{0.68\linewidth}}
+Algorithms & Naive, Rabin-Karp, Vectorized RK, Greedy KMP, Greedy BM, Bird-KMP, Bird-BM \\
+Random section size & \RandomRowCount{} rows total \\
+QR section size & \QrRowCount{} rows over \QrImageCount{} QR images \\
+Contrived section size & \ContrivedRowCount{} rows \\
+Head-to-head size & \HeadToHeadRowCount{} rows (5 algorithms) \\
+\end{tabular}
+
+\vspace{0.6em}
+\caveat{The local repository snapshot does not include the raw \texttt{qr/} image folder; QR evidence is chart/CSV-based.}
+\end{frame}

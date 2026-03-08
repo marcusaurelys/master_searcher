@@ -1,0 +1,172 @@
+Profiling Summary (cProfile)
+===========================
+
+CASE: random_n1000_p13
+
+  ALGO: Naive
+    wall_sec=1.132426, comparisons=980095, match=None, profile=profiling/random_n1000_p13_naive.prof
+    top_cumtime:
+      - naive.py:12:naive_search | cum=1.132250s | self=0.322529s | calls=1
+      - naive.py:5:naive_compare | cum=0.809721s | self=0.551860s | calls=976144
+      - counter.py:6:__call__ | cum=0.257860s | self=0.206028s | calls=980095
+      - naive.py:15:<lambda> | cum=0.051832s | self=0.051832s | calls=980095
+      - ~:0:<method 'copy' of 'numpy.ndarray' objects> | cum=0.000120s | self=0.000120s | calls=2
+      - ~:0:<method 'disable' of '_lsprof.Profiler' objects> | cum=0.000015s | self=0.000015s | calls=1
+      - counter.py:2:__init__ | cum=0.000001s | self=0.000001s | calls=1
+
+  ALGO: Rabin-Karp
+    wall_sec=1.284786, comparisons=976144, match=None, profile=profiling/random_n1000_p13_rabin_karp.prof
+    top_cumtime:
+      - rabin_karp.py:5:rabin_karp_search | cum=1.284548s | self=1.033145s | calls=1
+      - counter.py:6:__call__ | cum=0.251381s | self=0.203118s | calls=976144
+      - rabin_karp.py:6:<lambda> | cum=0.048263s | self=0.048263s | calls=976144
+      - ~:0:<method 'copy' of 'numpy.ndarray' objects> | cum=0.000157s | self=0.000157s | calls=2
+      - ~:0:<method 'disable' of '_lsprof.Profiler' objects> | cum=0.000021s | self=0.000021s | calls=1
+      - ~:0:<built-in method numpy.zeros> | cum=0.000019s | self=0.000019s | calls=1
+      - ~:0:<built-in method builtins.pow> | cum=0.000002s | self=0.000002s | calls=2
+      - counter.py:2:__init__ | cum=0.000001s | self=0.000001s | calls=1
+
+  ALGO: Vectorized RK
+    wall_sec=2.306015, comparisons=976144, match=None, profile=profiling/random_n1000_p13_vectorized_rk.prof
+    top_cumtime:
+      - rabin_karp.py:68:vectorized_rabin_karp | cum=2.305718s | self=1.593618s | calls=1
+      - fromnumeric.py:2304:sum | cum=0.464257s | self=0.000258s | calls=4
+      - fromnumeric.py:66:_wrapreduction | cum=0.463935s | self=0.001927s | calls=4
+      - ~:0:<method 'reduce' of 'numpy.ufunc' objects> | cum=0.461975s | self=0.461975s | calls=5
+      - counter.py:6:__call__ | cum=0.247567s | self=0.197473s | calls=976144
+      - rabin_karp.py:69:<lambda> | cum=0.050093s | self=0.050093s | calls=976144
+      - _stride_tricks_impl.py:119:sliding_window_view | cum=0.000254s | self=0.000211s | calls=1
+      - ~:0:<method 'copy' of 'numpy.ndarray' objects> | cum=0.000101s | self=0.000101s | calls=2
+
+  ALGO: Greedy KMP
+    wall_sec=1.192334, comparisons=1975028, match=None, profile=profiling/random_n1000_p13_greedy_kmp.prof
+    top_cumtime:
+      - greedy.py:23:greedy_kmp_search | cum=1.191917s | self=0.667644s | calls=1
+      - counter.py:6:__call__ | cum=0.524254s | self=0.415702s | calls=1975028
+      - greedy.py:24:<lambda> | cum=0.108551s | self=0.108551s | calls=1975028
+      - ~:0:<method 'copy' of 'numpy.ndarray' objects> | cum=0.000308s | self=0.000308s | calls=2
+      - ~:0:<method 'disable' of '_lsprof.Profiler' objects> | cum=0.000038s | self=0.000038s | calls=1
+      - greedy.py:4:compute_lps | cum=0.000026s | self=0.000015s | calls=1
+      - ~:0:<built-in method builtins.len> | cum=0.000004s | self=0.000004s | calls=1
+      - counter.py:2:__init__ | cum=0.000000s | self=0.000000s | calls=1
+
+  ALGO: Greedy BM
+    wall_sec=1.102134, comparisons=979106, match=None, profile=profiling/random_n1000_p13_greedy_bm.prof
+    top_cumtime:
+      - greedy.py:78:greedy_bm_search | cum=1.102045s | self=0.675543s | calls=1
+      - counter.py:6:__call__ | cum=0.263553s | self=0.212381s | calls=979106
+      - ~:0:<method 'get' of 'dict' objects> | cum=0.090510s | self=0.090510s | calls=976144
+      - ~:0:<built-in method builtins.max> | cum=0.072428s | self=0.072428s | calls=976144
+      - greedy.py:79:<lambda> | cum=0.051172s | self=0.051172s | calls=979106
+      - ~:0:<method 'copy' of 'numpy.ndarray' objects> | cum=0.000038s | self=0.000038s | calls=2
+      - ~:0:<method 'disable' of '_lsprof.Profiler' objects> | cum=0.000021s | self=0.000021s | calls=1
+      - greedy.py:73:get_bad_char_table | cum=0.000010s | self=0.000010s | calls=1
+
+  ALGO: Bird-KMP
+    wall_sec=7.641239, comparisons=988012, match=None, profile=profiling/random_n1000_p13_bird_kmp.prof
+    top_cumtime:
+      - bird.py:143:bird_kmp | cum=7.641124s | self=0.256930s | calls=1
+      - bird.py:85:_build_C_row | cum=7.123382s | self=2.886180s | calls=988
+      - bird.py:75:_ac_next | cum=4.151663s | self=3.014850s | calls=12844000
+      - ~:0:<method 'get' of 'dict' objects> | cum=1.136826s | self=1.136826s | calls=12844133
+      - counter.py:6:__call__ | cum=0.260035s | self=0.207740s | calls=988012
+      - ~:0:<method 'append' of 'list' objects> | cum=0.085583s | self=0.085583s | calls=988296
+      - bird.py:145:<lambda> | cum=0.052296s | self=0.052296s | calls=988012
+      - bird.py:25:_build_ac_goto | cum=0.000739s | self=0.000639s | calls=1
+
+  ALGO: Bird-BM
+    wall_sec=7.228390, comparisons=75088, match=None, profile=profiling/random_n1000_p13_bird_bm.prof
+    top_cumtime:
+      - bird.py:189:bird_bm | cum=7.228295s | self=0.047416s | calls=1
+      - bird.py:85:_build_C_row | cum=7.145293s | self=2.898096s | calls=988
+      - bird.py:75:_ac_next | cum=4.160428s | self=3.033763s | calls=12844000
+      - ~:0:<method 'get' of 'dict' objects> | cum=1.133681s | self=1.133681s | calls=12919221
+      - ~:0:<method 'append' of 'list' objects> | cum=0.086796s | self=0.086796s | calls=988296
+      - counter.py:6:__call__ | cum=0.021932s | self=0.018141s | calls=75088
+      - ~:0:<built-in method builtins.max> | cum=0.006381s | self=0.006381s | calls=75088
+      - bird.py:191:<lambda> | cum=0.003791s | self=0.003791s | calls=75088
+
+CASE: contrived_n1000_p3
+
+  ALGO: Naive
+    wall_sec=1.083065, comparisons=996012, match=(997, 997), profile=profiling/contrived_n1000_p3_naive.prof
+    top_cumtime:
+      - naive.py:12:naive_search | cum=1.082875s | self=0.307223s | calls=1
+      - naive.py:5:naive_compare | cum=0.775652s | self=0.520072s | calls=996004
+      - counter.py:6:__call__ | cum=0.255580s | self=0.204969s | calls=996012
+      - naive.py:15:<lambda> | cum=0.050611s | self=0.050611s | calls=996012
+      - ~:0:<method 'copy' of 'numpy.ndarray' objects> | cum=0.000144s | self=0.000144s | calls=2
+      - ~:0:<method 'disable' of '_lsprof.Profiler' objects> | cum=0.000014s | self=0.000014s | calls=1
+      - counter.py:2:__init__ | cum=0.000000s | self=0.000000s | calls=1
+
+  ALGO: Rabin-Karp
+    wall_sec=1.390139, comparisons=996013, match=(997, 997), profile=profiling/contrived_n1000_p3_rabin_karp.prof
+    top_cumtime:
+      - rabin_karp.py:5:rabin_karp_search | cum=1.390003s | self=1.132171s | calls=1
+      - counter.py:6:__call__ | cum=0.257798s | self=0.206919s | calls=996013
+      - rabin_karp.py:6:<lambda> | cum=0.050879s | self=0.050879s | calls=996013
+      - ~:0:<method 'copy' of 'numpy.ndarray' objects> | cum=0.000038s | self=0.000038s | calls=2
+      - ~:0:<method 'disable' of '_lsprof.Profiler' objects> | cum=0.000035s | self=0.000035s | calls=1
+      - ~:0:<built-in method numpy.zeros> | cum=0.000031s | self=0.000031s | calls=1
+      - ~:0:<built-in method builtins.pow> | cum=0.000002s | self=0.000002s | calls=2
+      - counter.py:2:__init__ | cum=0.000000s | self=0.000000s | calls=1
+
+  ALGO: Vectorized RK
+    wall_sec=0.619436, comparisons=996013, match=(997, 997), profile=profiling/contrived_n1000_p3_vectorized_rk.prof
+    top_cumtime:
+      - rabin_karp.py:68:vectorized_rabin_karp | cum=0.619234s | self=0.351285s | calls=1
+      - counter.py:6:__call__ | cum=0.243596s | self=0.192940s | calls=996013
+      - rabin_karp.py:69:<lambda> | cum=0.050656s | self=0.050656s | calls=996013
+      - fromnumeric.py:2304:sum | cum=0.024146s | self=0.000045s | calls=4
+      - fromnumeric.py:66:_wrapreduction | cum=0.024096s | self=0.000039s | calls=4
+      - ~:0:<method 'reduce' of 'numpy.ufunc' objects> | cum=0.024075s | self=0.024075s | calls=5
+      - _stride_tricks_impl.py:119:sliding_window_view | cum=0.000164s | self=0.000053s | calls=1
+      - ~:0:<method 'copy' of 'numpy.ndarray' objects> | cum=0.000096s | self=0.000096s | calls=2
+
+  ALGO: Greedy KMP
+    wall_sec=1.184059, comparisons=1996007, match=(997, 997), profile=profiling/contrived_n1000_p3_greedy_kmp.prof
+    top_cumtime:
+      - greedy.py:23:greedy_kmp_search | cum=1.183922s | self=0.664605s | calls=1
+      - counter.py:6:__call__ | cum=0.519312s | self=0.412197s | calls=1996007
+      - greedy.py:24:<lambda> | cum=0.107115s | self=0.107115s | calls=1996007
+      - ~:0:<method 'copy' of 'numpy.ndarray' objects> | cum=0.000085s | self=0.000085s | calls=2
+      - ~:0:<method 'disable' of '_lsprof.Profiler' objects> | cum=0.000015s | self=0.000015s | calls=1
+      - greedy.py:4:compute_lps | cum=0.000005s | self=0.000004s | calls=1
+      - ~:0:<built-in method builtins.len> | cum=0.000001s | self=0.000001s | calls=1
+      - counter.py:2:__init__ | cum=0.000000s | self=0.000000s | calls=1
+
+  ALGO: Greedy BM
+    wall_sec=0.371485, comparisons=332345, match=(997, 997), profile=profiling/contrived_n1000_p3_greedy_bm.prof
+    top_cumtime:
+      - greedy.py:78:greedy_bm_search | cum=0.371406s | self=0.230489s | calls=1
+      - counter.py:6:__call__ | cum=0.089209s | self=0.072004s | calls=332345
+      - ~:0:<method 'get' of 'dict' objects> | cum=0.027433s | self=0.027433s | calls=332334
+      - ~:0:<built-in method builtins.max> | cum=0.024271s | self=0.024271s | calls=332334
+      - greedy.py:79:<lambda> | cum=0.017205s | self=0.017205s | calls=332345
+      - ~:0:<method 'copy' of 'numpy.ndarray' objects> | cum=0.000036s | self=0.000036s | calls=2
+      - ~:0:<method 'disable' of '_lsprof.Profiler' objects> | cum=0.000014s | self=0.000014s | calls=1
+      - greedy.py:73:get_bad_char_table | cum=0.000005s | self=0.000005s | calls=1
+
+  ALGO: Bird-KMP
+    wall_sec=2.202970, comparisons=998002, match=(997, 997), profile=profiling/contrived_n1000_p3_bird_kmp.prof
+    top_cumtime:
+      - bird.py:143:bird_kmp | cum=2.202893s | self=0.255248s | calls=1
+      - bird.py:85:_build_C_row | cum=1.688504s | self=0.838827s | calls=998
+      - bird.py:75:_ac_next | cum=0.767937s | self=0.528007s | calls=2994000
+      - counter.py:6:__call__ | cum=0.259108s | self=0.207788s | calls=998002
+      - ~:0:<method 'get' of 'dict' objects> | cum=0.239930s | self=0.239930s | calls=2994002
+      - ~:0:<method 'append' of 'list' objects> | cum=0.081741s | self=0.081741s | calls=998010
+      - bird.py:145:<lambda> | cum=0.051320s | self=0.051320s | calls=998002
+      - ~:0:<method 'copy' of 'numpy.ndarray' objects> | cum=0.000034s | self=0.000034s | calls=2
+
+  ALGO: Bird-BM
+    wall_sec=2.000408, comparisons=332339, match=(997, 997), profile=profiling/contrived_n1000_p3_bird_bm.prof
+    top_cumtime:
+      - bird.py:189:bird_bm | cum=2.000338s | self=0.184424s | calls=1
+      - bird.py:85:_build_C_row | cum=1.671680s | self=0.833524s | calls=998
+      - bird.py:75:_ac_next | cum=0.757057s | self=0.519097s | calls=2994000
+      - ~:0:<method 'get' of 'dict' objects> | cum=0.267513s | self=0.267513s | calls=3326336
+      - counter.py:6:__call__ | cum=0.089031s | self=0.073078s | calls=332339
+      - ~:0:<method 'append' of 'list' objects> | cum=0.081100s | self=0.081100s | calls=998010
+      - ~:0:<built-in method builtins.max> | cum=0.025627s | self=0.025627s | calls=332334
+      - bird.py:191:<lambda> | cum=0.015953s | self=0.015953s | calls=332339

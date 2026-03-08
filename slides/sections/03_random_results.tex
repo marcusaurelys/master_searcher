@@ -1,0 +1,52 @@
+\section{Random Growth Results}
+
+\begin{frame}{Random Suite: Bird-BM Minimizes Comparison Volume}
+\centering
+\includegraphics[width=\linewidth,height=0.52\textheight,keepaspectratio]{random_comparisons_vs_textsize_focus.png}
+
+\vspace{0.3em}
+\keymsg{Best average comparison count: \textbf{\RandomBestCompAlgo{}} (\RandomBestCompValue{}).}
+\sourcenote{\texttt{results\_random.csv} and \texttt{random\_comparisons\_vs\_textsize.png}}
+\end{frame}
+
+\begin{frame}{Pattern-Size Sensitivity Differs by Algorithm Family}
+\centering
+\includegraphics[width=\linewidth,height=0.55\textheight,keepaspectratio]{random_comparisons_vs_patsize_focus.png}
+
+\vspace{0.3em}
+\begin{block}{Interpretation}
+Bird-BM remains comparison-efficient as pattern size increases, while first-row-greedy variants scale less favorably in this suite.
+\end{block}
+\sourcenote{\texttt{results\_random.csv} and \texttt{random\_comparisons\_vs\_patsize.png}}
+\end{frame}
+
+\begin{frame}{Runtime Leader Is Not the Comparison Leader}
+\centering
+\includegraphics[width=\linewidth,height=0.52\textheight,keepaspectratio]{random_wallclock_focus.png}
+
+\vspace{0.3em}
+\keymsg{Best average wall-clock: \textbf{\RandomBestTimeAlgo{}} (\RandomBestTimeValue{} s).}
+\caveat{Bird methods reduce comparisons but incur overhead that hurts runtime in this implementation.}
+\sourcenote{\texttt{results\_random.csv} and \texttt{random\_wallclock.png}}
+\end{frame}
+
+\begin{frame}{Random Section Takeaway Table}
+\small
+\centering
+\begin{tabular}{lrr}
+\toprule
+\textbf{Algorithm} & \textbf{Mean Comparisons} & \textbf{Mean Time (s)} \\
+\midrule
+Bird-BM & \RandomCompBirdBM{} & \RandomTimeBirdBM{} \\
+Rabin-Karp & \RandomCompRabinKarp{} & \RandomTimeRabinKarp{} \\
+Vectorized RK & \RandomCompVectorizedRK{} & \RandomTimeVectorizedRK{} \\
+Naive & \RandomCompNaive{} & \RandomTimeNaive{} \\
+Bird-KMP & \RandomCompBirdKMP{} & \RandomTimeBirdKMP{} \\
+Greedy BM & \RandomCompGreedyBM{} & \RandomTimeGreedyBM{} \\
+Greedy KMP & \RandomCompGreedyKMP{} & \RandomTimeGreedyKMP{} \\
+\bottomrule
+\end{tabular}
+
+\vspace{0.5em}
+\caveat{Comparison and runtime rankings diverge; this motivates multi-metric selection.}
+\end{frame}
