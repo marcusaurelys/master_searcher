@@ -82,25 +82,34 @@ def _ac_next(goto, fail, output, state, val):
     return state, output[state]
 
 
-def _build_C_row(text, top, p_height, t_width, goto, fail, output):
+def _build_C_row(C, i):
+    return C[i]
 
-    c_row = []
+def _build_C_matrix(text, p_height, goto, fail, output):
+    t_height, t_width = text.shape
+
+    C = [[-1] * t_width for _ in range(t_height)]
 
     for j in range(t_width):
-
         state = 0
-        match = -1
 
-        for r in range(p_height):
+        for i in range(t_height):
 
-            val = text[top + r, j]
+            val = text[i, j]
 
-            state, match = _ac_next(goto, fail, output, state, val)
+            while state != 0 and val not in goto[state]:
+                state = fail[state]
 
-        c_row.append(match)
+            state = goto[state].get(val, 0)
 
-    return c_row
+            match = output[state]
 
+            if match != -1:
+                row = i - p_height + 1
+                if row >= 0:
+                    C[row][j] = match
+
+    return C
 
 def _compute_lps_ids(pattern_ids, is_equal):
 
@@ -156,12 +165,11 @@ def bird_kmp(text: np.array, pattern: np.array):
 
     lps = _compute_lps_ids(pat_col_ids, is_equal)
 
+    C = _build_C_matrix(text, p_height, goto, fail, output)
+
     for i in range(t_height - p_height + 1):
 
-        c_row = _build_C_row(
-            text, i, p_height, t_width,
-            goto, fail, output
-        )
+        c_row = _build_C_row(C, i)
 
         j = 0
         k = 0
@@ -197,17 +205,14 @@ def bird_bm(text: np.array, pattern: np.array):
         return is_equal.count, None
 
     pat_col_ids, unique_cols = _build_column_ids(pattern, is_equal)
-
     goto, output, fail = _build_ac_goto(unique_cols, p_height)
-
     bad_char = _get_bad_char_ids(pat_col_ids)
+    C = _build_C_matrix(text, p_height, goto, fail, output)
+
 
     for i in range(t_height - p_height + 1):
 
-        c_row = _build_C_row(
-            text, i, p_height, t_width,
-            goto, fail, output
-        )
+        c_row = _build_C_row(C, i)
 
         s = 0
 
@@ -219,6 +224,7 @@ def bird_bm(text: np.array, pattern: np.array):
                 j -= 1
 
             if j < 0:
+
                 return is_equal.count, (i, s)
 
             bad_val = c_row[s + j]
@@ -226,5 +232,7 @@ def bird_bm(text: np.array, pattern: np.array):
             last_occ = bad_char.get(bad_val, -1)
 
             s += max(1, j - last_occ)
+
+
 
     return is_equal.count, None
