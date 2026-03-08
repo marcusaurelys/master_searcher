@@ -6,8 +6,8 @@
 Naive & Basic 2D sliding-window exact matching baseline. \\
 Rabin-Karp & 2D rolling hash over windows, then exact verification \cite{karp1987rabin}. \\
 Vectorized RK & Same RK logic with NumPy-wide window hashing. \\
-Greedy KMP & KMP filter on first row, then greedy full-row verification \cite{knuth1977fast}. \\
-Greedy BM & Bad-character BM filter on first row, then greedy verification \cite{boyer1977fast}. \\
+Greedy KMP & Match pattern first row with KMP, then naively verify remaining pattern rows \cite{knuth1977fast}. \\
+Greedy BM & Match pattern first row with BM, then naively verify remaining pattern rows \cite{boyer1977fast}. \\
 Bird-KMP & Column-encoding + Aho-Corasick-like column scan + KMP over IDs \cite{bird1977twod,aho1975efficient}. \\
 Bird-BM & Same Bird preprocessing, BM over column-ID sequence. \\
 \end{tabular}
@@ -72,8 +72,8 @@ Lower runtime than loop RK when vectorized operations amortize setup overhead.
 \small
 \begin{enumerate}
   \item Build LPS array from first pattern row.
-  \item Run KMP across each candidate top text row.
-  \item For first-row matches, greedily verify remaining rows directly.
+  \item Run KMP to match the first pattern row against each candidate text row.
+  \item For every first-row hit, naively verify the remaining pattern rows at the same column.
 \end{enumerate}
 \begin{itemize}
   \item Effective when first-row mismatches are frequent.
@@ -86,10 +86,10 @@ Lower runtime than loop RK when vectorized operations amortize setup overhead.
 \begin{enumerate}
   \item Build bad-character table from first pattern row.
   \item Match right-to-left on that row; shift aggressively on mismatch.
-  \item If first-row match, verify remaining rows greedily.
+  \item If the first row matches, naively verify the remaining pattern rows.
 \end{enumerate}
 \begin{block}{Observed Implementation Effect}
-Greedy BM benefits when first-row mismatches are frequent (random-like data), but degrades when many top rows trigger verification.
+Greedy BM benefits when first-row mismatches are frequent (random-like data), but degrades when many top rows trigger verification or close matches are frequent.
 \end{block}
 \end{frame}
 
