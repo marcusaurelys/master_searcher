@@ -20,7 +20,7 @@ def rabin_karp_search(text: np.array, pattern: np.array):
     for i in range(p_height):
         row_h = 0
         for j in range(p_width):
-            row_h = (row_h * Y_BASE + pattern[i, j]) % MOD
+            row_h = (row_h * Y_BASE + int(pattern[i, j])) % MOD
         p_hash = (p_hash * X_BASE + row_h) % MOD
 
     row_hashes = np.zeros((t_height, t_width - p_width + 1), dtype=int)
@@ -43,9 +43,9 @@ def rabin_karp_search(text: np.array, pattern: np.array):
     for j in range(t_width - p_width + 1):
         curr_v_h = 0
         for i in range(t_height):
-            curr_v_h = (curr_v_h * X_BASE + row_hashes[i, j]) % MOD
+            curr_v_h = (curr_v_h * X_BASE + int(row_hashes[i, j])) % MOD
             if i >= p_height:
-                curr_v_h = (curr_v_h - row_hashes[i - p_height, j] * x_pow % MOD + MOD) % MOD
+                curr_v_h = (curr_v_h - int(row_hashes[i - p_height, j]) * x_pow % MOD + MOD) % MOD
             
             if i >= p_height - 1:
                 if is_equal(curr_v_h, p_hash):
