@@ -1,50 +1,50 @@
 algorithm,comparisons,match,wall_sec,text_size,pattern_size,case
-Naive,537,"(22, 22)",0.001228,25,3,contrived
-Rabin-Karp,538,"(22, 22)",0.001941,25,3,contrived
-Vectorized RK,538,"(22, 22)",0.001768,25,3,contrived
-Greedy KMP,1157,"(22, 22)",0.000864,25,3,contrived
-Greedy BM,195,"(22, 22)",0.000319,25,3,contrived
-Bird-KMP,577,"(22, 22)",0.001547,25,3,contrived
-Bird-BM,189,"(22, 22)",0.00086,25,3,contrived
-Naive,2312,"(47, 47)",0.003038,50,3,contrived
-Rabin-Karp,2313,"(47, 47)",0.007802,50,3,contrived
-Vectorized RK,2313,"(47, 47)",0.00293,50,3,contrived
-Greedy KMP,4807,"(47, 47)",0.003581,50,3,contrived
-Greedy BM,778,"(47, 47)",0.001382,50,3,contrived
-Bird-KMP,2402,"(47, 47)",0.003733,50,3,contrived
-Bird-BM,772,"(47, 47)",0.003547,50,3,contrived
-Naive,9612,"(97, 97)",0.011634,100,3,contrived
-Rabin-Karp,9613,"(97, 97)",0.027883,100,3,contrived
-Vectorized RK,9613,"(97, 97)",0.005785,100,3,contrived
-Greedy KMP,19607,"(97, 97)",0.009997,100,3,contrived
-Greedy BM,3245,"(97, 97)",0.003127,100,3,contrived
-Bird-KMP,9802,"(97, 97)",0.012476,100,3,contrived
-Bird-BM,3239,"(97, 97)",0.011368,100,3,contrived
-Naive,39212,"(197, 197)",0.047298,200,3,contrived
-Rabin-Karp,39213,"(197, 197)",0.123212,200,3,contrived
-Vectorized RK,39213,"(197, 197)",0.027949,200,3,contrived
-Greedy KMP,79207,"(197, 197)",0.044808,200,3,contrived
-Greedy BM,13078,"(197, 197)",0.013425,200,3,contrived
-Bird-KMP,39602,"(197, 197)",0.05327,200,3,contrived
-Bird-BM,13072,"(197, 197)",0.051493,200,3,contrived
-Naive,248012,"(497, 497)",0.332865,500,3,contrived
-Rabin-Karp,248013,"(497, 497)",0.767963,500,3,contrived
-Vectorized RK,248013,"(497, 497)",0.159113,500,3,contrived
-Greedy KMP,498007,"(497, 497)",0.260991,500,3,contrived
-Greedy BM,82678,"(497, 497)",0.127859,500,3,contrived
-Bird-KMP,249002,"(497, 497)",0.339164,500,3,contrived
-Bird-BM,82672,"(497, 497)",0.294746,500,3,contrived
-Naive,996012,"(997, 997)",1.188656,1000,3,contrived
-Rabin-Karp,996013,"(997, 997)",3.361509,1000,3,contrived
-Vectorized RK,996013,"(997, 997)",0.680042,1000,3,contrived
-Greedy KMP,1996007,"(997, 997)",1.153057,1000,3,contrived
-Greedy BM,332345,"(997, 997)",0.336493,1000,3,contrived
-Bird-KMP,998002,"(997, 997)",1.656414,1000,3,contrived
-Bird-BM,332339,"(997, 997)",1.333657,1000,3,contrived
-Naive,3992012,"(1997, 1997)",5.148479,2000,3,contrived
-Rabin-Karp,3992013,"(1997, 1997)",13.415219,2000,3,contrived
-Vectorized RK,3992013,"(1997, 1997)",2.862937,2000,3,contrived
-Greedy KMP,7992007,"(1997, 1997)",4.414015,2000,3,contrived
-Greedy BM,1330678,"(1997, 1997)",1.374002,2000,3,contrived
-Bird-KMP,3996002,"(1997, 1997)",5.750196,2000,3,contrived
-Bird-BM,1330672,"(1997, 1997)",5.083029,2000,3,contrived
+Naive,2029,"(21, 22)",0.001622,25,3,contrived
+Rabin-Karp,537,"(21, 22)",0.000964,25,3,contrived
+Vectorized RK,515,"(21, 22)",0.0009,25,3,contrived
+Greedy KMP,1107,"(21, 22)",0.000938,25,3,contrived
+Greedy BM,2029,"(21, 22)",0.001596,25,3,contrived
+Bird-KMP,552,"(21, 22)",0.00092,25,3,contrived
+Bird-BM,181,"(21, 22)",0.000927,25,3,contrived
+Naive,9029,"(46, 47)",0.007652,50,3,contrived
+Rabin-Karp,2312,"(46, 47)",0.003858,50,3,contrived
+Vectorized RK,2265,"(46, 47)",0.001884,50,3,contrived
+Greedy KMP,4707,"(46, 47)",0.003566,50,3,contrived
+Greedy BM,9029,"(46, 47)",0.005993,50,3,contrived
+Bird-KMP,2352,"(46, 47)",0.003718,50,3,contrived
+Bird-BM,756,"(46, 47)",0.003545,50,3,contrived
+Naive,38029,"(96, 97)",0.029117,100,3,contrived
+Rabin-Karp,9612,"(96, 97)",0.01634,100,3,contrived
+Vectorized RK,9515,"(96, 97)",0.006102,100,3,contrived
+Greedy KMP,19407,"(96, 97)",0.013124,100,3,contrived
+Greedy BM,38029,"(96, 97)",0.024818,100,3,contrived
+Bird-KMP,9702,"(96, 97)",0.014026,100,3,contrived
+Bird-BM,3206,"(96, 97)",0.01318,100,3,contrived
+Naive,156029,"(196, 197)",0.115413,200,3,contrived
+Rabin-Karp,39212,"(196, 197)",0.061374,200,3,contrived
+Vectorized RK,39015,"(196, 197)",0.024414,200,3,contrived
+Greedy KMP,78807,"(196, 197)",0.054516,200,3,contrived
+Greedy BM,156029,"(196, 197)",0.100269,200,3,contrived
+Bird-KMP,39402,"(196, 197)",0.05591,200,3,contrived
+Bird-BM,13006,"(196, 197)",0.049335,200,3,contrived
+Naive,990029,"(496, 497)",0.711564,500,3,contrived
+Rabin-Karp,248012,"(496, 497)",0.398714,500,3,contrived
+Vectorized RK,247515,"(496, 497)",0.153408,500,3,contrived
+Greedy KMP,497007,"(496, 497)",0.337978,500,3,contrived
+Greedy BM,990029,"(496, 497)",0.711083,500,3,contrived
+Bird-KMP,248502,"(496, 497)",0.36863,500,3,contrived
+Bird-BM,82506,"(496, 497)",0.32239,500,3,contrived
+Naive,3980029,"(996, 997)",2.894166,1000,3,contrived
+Rabin-Karp,996012,"(996, 997)",1.620036,1000,3,contrived
+Vectorized RK,995015,"(996, 997)",0.613491,1000,3,contrived
+Greedy KMP,1994007,"(996, 997)",1.370658,1000,3,contrived
+Greedy BM,3980029,"(996, 997)",2.647617,1000,3,contrived
+Bird-KMP,997002,"(996, 997)",1.467006,1000,3,contrived
+Bird-BM,332006,"(996, 997)",1.309615,1000,3,contrived
+Naive,15960029,"(1996, 1997)",11.568233,2000,3,contrived
+Rabin-Karp,3992012,"(1996, 1997)",6.676053,2000,3,contrived
+Vectorized RK,3990015,"(1996, 1997)",2.54783,2000,3,contrived
+Greedy KMP,7988007,"(1996, 1997)",5.591397,2000,3,contrived
+Greedy BM,15960029,"(1996, 1997)",10.627887,2000,3,contrived
+Bird-KMP,3994002,"(1996, 1997)",5.946862,2000,3,contrived
+Bird-BM,1330006,"(1996, 1997)",5.376143,2000,3,contrived
