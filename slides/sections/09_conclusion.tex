@@ -3,24 +3,10 @@
 \begin{frame}{Final Conclusions}
 \begin{enumerate}
   \item \textbf{Comparison leader:} Bird-BM is consistently best or near-best in comparison count.
-  \item \textbf{Runtime leader:} Greedy BM is the most reliable wall-clock winner on tested practical scenarios.
-  \item \textbf{Metric divergence is real:} implementation overhead changes winner selection.
+  \item \textbf{Wall-clock is secondary:} we report it as runtime evidence, not as the primary grading metric.
+  \item \textbf{Metric divergence is real:} implementation overhead changes wall-clock without changing comparison logic.
   \item \textbf{Decision rule:} pick algorithm by workload and objective, not by one global metric.
 \end{enumerate}
-\keymsg{For this codebase, \textbf{Greedy BM} is the default deployment pick when runtime is primary.}
-\end{frame}
-
-\begin{frame}{Actionable Next Steps}
-\small
-\begin{itemize}
-  \item Standardize a unified operation-count model for better cross-algorithm fairness.
-  \item Add profiling instrumentation to isolate overhead hotspots in Bird and RK variants.
-  \item Expand QR corpus and retain raw assets in-repo (or with reproducible download script).
-  \item Add CI task: regenerate metrics macros and verify slide callouts from CSV on every update.
-\end{itemize}
-\begin{block}{Deliverable status}
-This deck is compile-ready and tied to reproducible scripts for metrics + figure preparation.
-\end{block}
 \end{frame}
 
 \begin{frame}[allowframebreaks]{References}

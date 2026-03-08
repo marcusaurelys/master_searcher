@@ -53,35 +53,5 @@ Rabin-Karp & \ContrivedCompRabinKarp{} & \ContrivedTimeRabinKarp{} \\
 Vectorized RK & \ContrivedCompVectorizedRK{} & \ContrivedTimeVectorizedRK{} \\
 \bottomrule
 \end{tabular}
-\end{frame}
 
-\begin{frame}{Backup: Pipeline Pseudocode}
-\small
-\textbf{Experiment loop skeleton}
-\begin{enumerate}
-  \item Generate \texttt{text}, \texttt{pattern} for a scenario.
-  \item Run all algorithms and collect \texttt{(comparisons, match, wall\_sec)}.
-  \item Append row records with scenario metadata.
-  \item Persist section CSV, then aggregate means by algorithm.
-  \item Plot comparisons and wall-clock for cross-method interpretation.
-\end{enumerate}
-\end{frame}
-
-\begin{frame}{Backup: Reproducibility and Build}
-\small
-\textbf{Regenerate metrics and compile slides}
-\begin{itemize}
-  \item \texttt{make metrics}
-  \item \texttt{make figures}
-  \item \texttt{make slides}
-\end{itemize}
-
-\vspace{0.5em}
-\textbf{Key project files}
-\begin{itemize}
-  \item \texttt{scripts/recompute\_metrics.py}
-  \item \texttt{scripts/prepare\_figures.py}
-  \item \texttt{slides/main.tex} and \texttt{slides/sections/*.tex}
-  \item \texttt{slides/generated/metrics\_summary.csv}
-\end{itemize}
 \end{frame}
