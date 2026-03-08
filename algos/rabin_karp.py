@@ -12,7 +12,7 @@ def rabin_karp_search(text: np.array, pattern: np.array):
         return 0, None
 
     # Constants for hashing
-    X_BASE, Y_BASE = 3, 5
+    X_BASE, Y_BASE = 31, 37
     MOD = 10**9 + 7
 
     # 1. Precompute Pattern Hash
@@ -26,25 +26,26 @@ def rabin_karp_search(text: np.array, pattern: np.array):
     row_hashes = np.zeros((t_height, t_width - p_width + 1), dtype=int)
     y_pow = pow(Y_BASE, p_width, MOD)
 
-    #compute row rolling hash for text
+   # row rolling hash
     for i in range(t_height):
         curr_h = 0
         for j in range(t_width):
-            curr_h = (curr_h * Y_BASE + text[i, j]) % MOD
+            curr_h = (curr_h * Y_BASE + int(text[i, j])) % MOD
             if j >= p_width:
-                curr_h = (curr_h - text[i, j - p_width] * y_pow) % MOD
+                curr_h = (curr_h - int(text[i, j - p_width]) * y_pow % MOD + MOD) % MOD
             if j >= p_width - 1:
                 row_hashes[i, j - p_width + 1] = curr_h
 
+
     x_pow = pow(X_BASE, p_height, MOD)
     
-    #compute column rolling hash of row hash
+    # column rolling hash
     for j in range(t_width - p_width + 1):
         curr_v_h = 0
         for i in range(t_height):
             curr_v_h = (curr_v_h * X_BASE + row_hashes[i, j]) % MOD
             if i >= p_height:
-                curr_v_h = (curr_v_h - row_hashes[i - p_height, j] * x_pow) % MOD
+                curr_v_h = (curr_v_h - row_hashes[i - p_height, j] * x_pow % MOD + MOD) % MOD
             
             if i >= p_height - 1:
                 if is_equal(curr_v_h, p_hash):

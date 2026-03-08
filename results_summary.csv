@@ -1,8 +1,8 @@
 algorithm,random_avg_comparisons,qr_avg_comparisons,contrived_avg_comparisons
-Naive,214681.8,,215949.5
-Rabin-Karp,213487.5,,215950.5
-Vectorized RK,213487.5,,215950.5
-Greedy KMP,430419.4,,433132.0
-Greedy BM,338022.2,,72053.2
-Bird-KMP,3177021.4,,866261.0
-Bird-BM,3249936.2,,793788.3
+Naive,753131.0,2184.2,755387.0
+Rabin-Karp,750996.4,1350.3,755388.0
+Vectorized RK,750996.4,1148.9,755388.0
+Greedy KMP,1508161.4,3030.6,1512971.3
+Greedy BM,1189064.7,710.0,251856.7
+Bird-KMP,754329.0,1294.6,756484.1
+Bird-BM,204743.7,263.6,251850.7
